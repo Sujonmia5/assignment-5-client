@@ -6,7 +6,7 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
   return (
-    <div className="pt-10 max-w-screen-2xl mx-auto bg-transparent">
+    <div className="relative z-50 pt-10 max-w-screen-2xl mx-auto bg-transparent">
       <nav className="flex items-center justify-between w-full">
         {/* left side brand logo */}
         <div>

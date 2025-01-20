@@ -1,4 +1,4 @@
-const Marque = () => {
+const Marque = ({ margin }: { margin?: string }) => {
   const marqueData = [
     {
       img: "https://kitpro.site/outspace/wp-content/uploads/sites/296/2024/12/logoipsum-297-2.png",
@@ -14,7 +14,7 @@ const Marque = () => {
     },
   ];
   return (
-    <div className="w-full h-fit mt-64 py-20 flex gap-10 px-12 ">
+    <div className={`w-full h-fit py-20 flex gap-10 px-12 ${margin}`}>
       {marqueData.map((img, index) => (
         <div key={index} className="w-full h-16">
           <figure>
