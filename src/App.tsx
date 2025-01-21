@@ -4,7 +4,7 @@ import { ConfigProvider, theme } from "antd";
 
 function App() {
   const { token } = theme.useToken();
-  console.log(token);
+
   const customTheme = {
     ...token,
     colorPrimary: "#1c9a92",

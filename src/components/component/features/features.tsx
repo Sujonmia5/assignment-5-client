@@ -11,7 +11,7 @@ const Features = () => {
         "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
     },
     {
-      id: 1,
+      id: 2,
       name: "Standard Room",
       capacity: 15,
       pricePerSlot: 150,
@@ -19,7 +19,7 @@ const Features = () => {
         "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
     },
     {
-      id: 1,
+      id: 3,
       name: "Standard Room",
       capacity: 15,
       pricePerSlot: 150,
@@ -27,7 +27,7 @@ const Features = () => {
         "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
     },
     {
-      id: 1,
+      id: 4,
       name: "Standard Room",
       capacity: 15,
       pricePerSlot: 150,

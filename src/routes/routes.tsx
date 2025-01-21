@@ -8,6 +8,7 @@ import Spaces from "../pages/spaces";
 import Error from "../pages/Error";
 import Login from "../pages/login";
 import Register from "../pages/register";
+import Contact from "../pages/contact";
 
 export const router = createBrowserRouter([
   {
@@ -30,10 +31,14 @@ export const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
     ],
   },
   {
-    path: "/register",
+    path: "/signup",
     element: <Register />,
   },
   {

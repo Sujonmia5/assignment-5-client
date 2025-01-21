@@ -1,12 +1,44 @@
 import { Button, Input } from "antd";
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { HiOutlineMail } from "react-icons/hi";
+import { useLoginUserMutation } from "../../redux/api/userAPI";
+import { useAppDispatch } from "../../redux/hooks";
+import { setUser } from "../../redux/feature/userSlice";
+import { useNavigate } from "react-router-dom";
 
+interface LoginFormData {
+  email: string;
+  password: string;
+}
 const LoginFrom = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>();
+  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const dispacth = useAppDispatch();
+  const navigate = useNavigate();
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      const res = await loginUser(data);
+      localStorage.setItem("token", res?.data?.token);
+      const user = {
+        email: res?.data?.data?.email,
+        role: res?.data?.data?.role,
+        token: res?.data?.token,
+      };
+      dispacth(setUser(user));
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <form className="w-full space-y-12 h-full flex flex-col items-center  justify-center">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full space-y-12 h-full flex flex-col items-center  justify-center"
+    >
       <div className="my-5">
         <h4 className="text-5xl font-exo font-medium">
           Log in to access all <br /> our services
@@ -17,11 +49,24 @@ const LoginFrom = () => {
           <label htmlFor="email" className="block mb-2 text-sm">
             Email address
           </label>
-          <Input
-            size="large"
-            placeholder="Enter your email address"
-            prefix={<HiOutlineMail />}
+          <Controller
+            name="email"
+            control={control}
+            rules={{ required: "email is required" }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                size="large"
+                placeholder="Enter your email address"
+                prefix={<HiOutlineMail />}
+              />
+            )}
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors?.email?.message}
+            </p>
+          )}
         </div>
         <div>
           <div className="flex justify-between mb-2">
@@ -36,13 +81,24 @@ const LoginFrom = () => {
               Forgot password?
             </a>
           </div>
-          <Input.Password
-            placeholder="input password"
-            visibilityToggle={{
-              visible: passwordVisible,
-              onVisibleChange: setPasswordVisible,
-            }}
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: "password is required" }}
+            render={({ field }) => (
+              <Input.Password
+                {...field}
+                size="large"
+                placeholder="Enter your password"
+                prefix={<HiOutlineMail />}
+              />
+            )}
           />
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors?.password?.message}
+            </p>
+          )}
         </div>
       </div>
       <div className="space-y-2">
@@ -50,6 +106,8 @@ const LoginFrom = () => {
           <Button
             type="primary"
             variant="filled"
+            htmlType="submit"
+            loading={isLoading}
             className="w-full px-8 py-3 font-semibold rounded-md dark:text-gray-50"
           >
             Sign in
@@ -59,7 +117,7 @@ const LoginFrom = () => {
           Don't have an account yet?{" "}
           <a
             rel="noopener noreferrer"
-            href="#"
+            href="/signup"
             className="hover:underline dark:text-primary-light"
           >
             Sign up
