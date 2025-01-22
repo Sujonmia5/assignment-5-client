@@ -9,6 +9,7 @@ import Error from "../pages/Error";
 import Login from "../pages/login";
 import Register from "../pages/register";
 import Contact from "../pages/contact";
+import SingleRoom from "../pages/singleRoom";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/spaces",
         element: <Spaces />,
+      },
+      {
+        path: "/spaces/:id",
+        element: <SingleRoom />,
       },
       {
         path: "/about",

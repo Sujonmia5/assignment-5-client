@@ -2,7 +2,7 @@ import { Button } from "antd";
 
 const Error = () => {
   return (
-    <div className="h-screen bg-header-bg bg-cover bg-current bg-no-repeat overflow-hidden flex flex-col justify-center items-center ">
+    <div className="h-screen bg-header-bg bg-cover bg-center bg-no-repeat overflow-hidden flex flex-col justify-center items-center ">
       <div className="text-center">
         <div className="relative">
           <svg

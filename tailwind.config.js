@@ -22,6 +22,7 @@ export default {
       },
       backgroundImage: {
         "header-bg": "url('./src/assets/image/background-1-1.png')",
+        "header-bg-alt": "url('/public/background-1-1.png')",
       },
     },
   },

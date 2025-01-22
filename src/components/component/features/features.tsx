@@ -1,40 +1,9 @@
+import { Button } from "antd";
 import RoomCard from "../roomCard/roomCard";
 
-const Features = () => {
-  const rooms = [
-    {
-      id: 1,
-      name: "Standard Room",
-      capacity: 15,
-      pricePerSlot: 150,
-      image:
-        "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
-    },
-    {
-      id: 2,
-      name: "Standard Room",
-      capacity: 15,
-      pricePerSlot: 150,
-      image:
-        "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
-    },
-    {
-      id: 3,
-      name: "Standard Room",
-      capacity: 15,
-      pricePerSlot: 150,
-      image:
-        "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
-    },
-    {
-      id: 4,
-      name: "Standard Room",
-      capacity: 15,
-      pricePerSlot: 150,
-      image:
-        "https://cdn.shopify.com/s/files/1/0605/0136/0804/files/Modern_meeting_room_with_advanced_technology.jpg?v=1703751846",
-    },
-  ];
+const Features = ({ data }: { data: [] }) => {
+  console.log(data);
+
   return (
     <div className="my-20 text-info px-12">
       <div>
@@ -44,9 +13,21 @@ const Features = () => {
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        {rooms.map((room) => (
-          <RoomCard room={room} key={room.id} />
+        {data?.map((room) => (
+          <RoomCard room={room} key={room?._id} />
         ))}
+      </div>
+      <div className="w-full h-20 my-10 flex items-center justify-center ">
+        <a href="/spaces">
+          <Button
+            type="primary"
+            variant="filled"
+            size="large"
+            className="font-exo text-xl capitalize "
+          >
+            see more
+          </Button>
+        </a>
       </div>
     </div>
   );

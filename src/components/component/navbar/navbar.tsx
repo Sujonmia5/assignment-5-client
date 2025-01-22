@@ -1,11 +1,36 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import brandLogo from "../../../assets/image/Coworking-Space.png";
 import { menuItems } from "../../../utils/navbarItems";
-import { Button, Tooltip } from "antd";
-import { useAppSelector } from "../../../redux/hooks";
-import { FiLogOut } from "react-icons/fi";
+import { Button, Dropdown } from "antd";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+
+import { FaUserAlt } from "react-icons/fa";
+import { dropdownWithRole } from "../../../utils/utilsData";
+import { logout } from "../../../redux/feature/userSlice";
+
 const Navbar = () => {
   const user = useAppSelector((state) => state.user.user);
+  const dispacth = useAppDispatch();
+  const navigate = useNavigate();
+
+  const dropdownClick = ({ key }: { key: string }) => {
+    if (key === "1" && user?.role === "admin") {
+      navigate("/dashboard");
+    }
+    if (key === "1" && user?.role === "user") {
+      navigate("/my-booking");
+    }
+    if (key === "2") {
+      localStorage.removeItem("token");
+      dispacth(logout());
+      navigate("/");
+    }
+  };
+
+  const menuProps = {
+    items: dropdownWithRole(user?.role),
+    onClick: dropdownClick,
+  };
   return (
     <div className="relative z-50 pt-10 px-5 max-w-screen-2xl mx-auto bg-transparent">
       <nav className="flex items-center justify-between w-full">
@@ -31,45 +56,23 @@ const Navbar = () => {
                 </li>
               ))
             }
-            {user.role ? (
+
+            {user?.role ? (
               <>
-                {user.role === "admin" ? (
-                  <>
-                    <li>
-                      <NavLink
-                        className="text-lg capitalize font-faSolid font-medium text-white"
-                        to="/deshboard"
-                      >
-                        Deshboard
-                      </NavLink>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <NavLink
-                        className="text-lg capitalize font-faSolid font-medium text-white"
-                        to="/my-booking"
-                      >
-                        My booking
-                      </NavLink>
-                    </li>
-                  </>
-                )}
-                <li>
-                  <Tooltip placement="top" title={"Log Out"} color="red">
-                    <Button
-                      type="primary"
-                      size="middle"
-                      icon={<FiLogOut className="size-6" />}
-                      classNames={{
-                        icon: "flex items-center justify-center",
-                      }}
-                      color="primary"
-                      className="text-white flex items-center justify-center gap-1 font-exo text-lg font-semibold hover:text-primary-light"
-                    ></Button>
-                  </Tooltip>
-                </li>
+                <Dropdown
+                  menu={menuProps}
+                  placement="bottomCenter"
+                  className="cursor-pointer"
+                  overlayStyle={{
+                    backgroundColor: "#ffffff1a",
+                    borderRadius: "8px",
+                    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "5px 10px",
+                    zIndex: "100",
+                  }}
+                >
+                  <FaUserAlt size={30} className="text-white" />
+                </Dropdown>
               </>
             ) : (
               <>

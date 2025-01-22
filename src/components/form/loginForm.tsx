@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Input } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import { HiOutlineMail } from "react-icons/hi";
@@ -5,6 +6,7 @@ import { useLoginUserMutation } from "../../redux/api/userAPI";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/feature/userSlice";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface LoginFormData {
   email: string;
@@ -19,6 +21,7 @@ const LoginFrom = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispacth = useAppDispatch();
   const navigate = useNavigate();
+
   const onSubmit = async (data: LoginFormData) => {
     try {
       const res = await loginUser(data);
@@ -29,11 +32,14 @@ const LoginFrom = () => {
         token: res?.data?.token,
       };
       dispacth(setUser(user));
+      toast.success("login success");
       navigate("/");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.log(error.message);
+      toast.error("Invalid email or password");
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
