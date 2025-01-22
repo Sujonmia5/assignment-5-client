@@ -15,6 +15,7 @@ const roomAPI = OutSpaceAPI.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["roomsData"],
     }),
     getRoomById: builder.query({
       query: (id) => ({

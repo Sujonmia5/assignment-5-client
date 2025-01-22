@@ -7,6 +7,7 @@ export const OutSpaceAPI = createApi({
     baseUrl: "https://assignment-5-server-nine.vercel.app/",
   }),
   endpoints: () => ({}),
+  tagTypes: ["roomsData"],
 });
 
 export const { reducer: apiReducer, middleware: apiMiddleware } = OutSpaceAPI;

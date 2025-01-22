@@ -1,9 +1,8 @@
 import { Button } from "antd";
 import RoomCard from "../roomCard/roomCard";
+import { TRoom } from "../../../types/utils";
 
-const Features = ({ data }: { data: [] }) => {
-  console.log(data);
-
+const Features = ({ data }: { data: TRoom[] }) => {
   return (
     <div className="my-20 text-info px-12">
       <div>
@@ -14,7 +13,7 @@ const Features = ({ data }: { data: [] }) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
         {data?.map((room) => (
-          <RoomCard room={room} key={room?._id} />
+          <RoomCard room={room} key={room._id} />
         ))}
       </div>
       <div className="w-full h-20 my-10 flex items-center justify-center ">

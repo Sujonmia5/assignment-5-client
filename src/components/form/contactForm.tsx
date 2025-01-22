@@ -52,7 +52,7 @@ const ContactForm = () => {
             <label className="block">
               <span className="mb-1">Message</span>
               <textarea
-                rows="3"
+                rows={3}
                 className="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600 dark:bg-gray-100"
               ></textarea>
             </label>
@@ -116,10 +116,7 @@ export default ContactForm;
         </p>
       </div>
     </div>
-    <form
-      noValidate=""
-      className="flex flex-col py-6 space-y-6 md:py-0 md:px-6"
-    >
+    <form className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
       <label className="block">
         <span className="mb-1">Full name</span>
         <input
@@ -139,7 +136,7 @@ export default ContactForm;
       <label className="block">
         <span className="mb-1">Message</span>
         <textarea
-          rows="3"
+          rows={3}
           className="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600 dark:bg-gray-100"
         ></textarea>
       </label>
