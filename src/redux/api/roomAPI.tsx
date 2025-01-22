@@ -5,7 +5,10 @@ const roomAPI = OutSpaceAPI.injectEndpoints({
     getRooms: builder.query({
       query: (arg) => {
         const params = new URLSearchParams();
-        if (arg.limit) params.append("limit", arg.limit);
+        if (arg?.limit) params.append("limit", `${arg?.limit}`);
+        if (arg?.sort) params.append("sort", `${arg?.sort}`);
+        if (arg?.filterValue)
+          params.append("capacity", `${arg?.filterValue * 10}`);
         return {
           url: "/api/rooms",
           method: "GET",

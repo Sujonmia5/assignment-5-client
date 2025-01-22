@@ -8,57 +8,39 @@ import {
   Select,
 } from "antd";
 import RoomCard from "../roomCard/roomCard";
-import { MdClear, MdExpandMore } from "react-icons/md";
+import { MdClear } from "react-icons/md";
 import { TRoom } from "../../../types/utils";
-import { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { FaUserGroup, FaUsers } from "react-icons/fa6";
+
+import { FaUserGroup } from "react-icons/fa6";
+import { style } from "../../../utils/constent";
+import React from "react";
 
 type SearchProps = GetProps<typeof Input.Search>;
 
-interface RoomsProps {
-  data: TRoom[] | [];
-}
-const Rooms = ({ data }: RoomsProps) => {
-  const [limit, setLimit] = useState<number>(10);
-  const [sort, setSort] = useState<number | null>(null);
+export type TRoomProps = {
+  data: TRoom[];
+  limit: number;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
+  sort: number | null;
+  setSort: React.Dispatch<React.SetStateAction<number | null>>;
+  filterValue: number | null | undefined; // Allow undefined
+  setFilterValue: React.Dispatch<React.SetStateAction<number | null>>;
+};
 
+interface RoomsProps {
+  allData: TRoomProps;
+}
+
+const Rooms = ({ allData }: RoomsProps) => {
+  const { data, setLimit, limit, setSort, filterValue, setFilterValue } =
+    allData;
+
+  //
   const { Search } = Input;
   const onSearch: SearchProps["onSearch"] = (value, _e, info) => {
     console.log(info?.source, value);
   };
 
-  const style: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
-  };
-
-  const [value, setValue] = useState(1);
-
-  const onChange = (e: RadioChangeEvent) => {
-    setValue(e.target.value);
-  };
-
-  const filterData = [
-    {
-      id: 1,
-      name: "0 - 10",
-    },
-    {
-      id: 1,
-      name: "10 - 20",
-    },
-    {
-      id: 1,
-      name: "20 - 30",
-    },
-    {
-      id: 1,
-      name: "30 - 40",
-    },
-    {},
-  ];
   return (
     <div className="py-10 px-12 space-y-5">
       <div className="w-full flex justify-between bg-gray-200 p-5 rounded-xl">
@@ -68,33 +50,23 @@ const Rooms = ({ data }: RoomsProps) => {
           </h2>
         </div>
         <div className="flex items-center gap-5">
-          <div>
-            <Button
-              classNames={{
-                icon: "absolute right-2",
-              }}
-              className="w-28 bg-primary-light "
-              type="primary"
-              icon={<MdClear />}
-            >
-              Reset All
-            </Button>
-          </div>
           {/*Limit Data*/}
-          <Select
-            defaultValue="Show"
-            style={{ width: 120 }}
-            value={limit.toString()}
-            onChange={(value) => {
-              setLimit(parseInt(value));
-            }}
-            options={[
-              { value: "10", label: "10" },
-              { value: "15", label: "15" },
-              { value: "20", label: "20" },
-            ]}
-          />
-
+          <div className="flex items-center  justify-center gap-x-2">
+            <p className="text-base text-info font-exo">Show</p>
+            <Select
+              defaultValue="Show"
+              style={{ width: 120 }}
+              value={limit.toString()}
+              onChange={(value) => {
+                setLimit(parseInt(value));
+              }}
+              options={[
+                { value: "10", label: "10" },
+                { value: "15", label: "15" },
+                { value: "20", label: "20" },
+              ]}
+            />
+          </div>
           {/* sort */}
           <Select
             defaultValue="Sort By"
@@ -119,12 +91,29 @@ const Rooms = ({ data }: RoomsProps) => {
       </div>
       <div className="grid grid-cols-12 gap-x-5 ">
         <div className="col-span-2 bg-gray-200 shadow-2xl shadow-primary-light rounded-2xl h-screen">
-          <h2 className="text-xl py-2 pl-4 font-exo font-semibold text-info">
-            Filters
-          </h2>
+          <div className="flex items-center justify-start gap-10">
+            <h2 className="text-xl py-2 pl-4 font-exo font-semibold text-info">
+              Filters
+            </h2>
+
+            {filterValue && (
+              <Button
+                onClick={() => setFilterValue(null)}
+                classNames={{
+                  icon: "text-base font-exo font-semibold",
+                }}
+                iconPosition="end"
+                className="w-28  text-sm font-exo font-semibold"
+                icon={<MdClear />}
+              >
+                Reset All
+              </Button>
+            )}
+          </div>
           <Collapse
             collapsible="header"
             defaultActiveKey={["1"]}
+            className="text-orange-500"
             items={[
               {
                 key: "1",
@@ -133,9 +122,10 @@ const Rooms = ({ data }: RoomsProps) => {
                   <div>
                     <Radio.Group
                       style={style}
-                      onChange={onChange}
-                      value={value}
-                      className="hover:text-primary-light"
+                      onChange={(e: RadioChangeEvent) =>
+                        setFilterValue(e.target.value)
+                      }
+                      value={filterValue}
                       options={Array.from({ length: 5 }).map((_, i) => ({
                         value: i + 1,
                         label: (
