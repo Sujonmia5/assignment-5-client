@@ -1,8 +1,11 @@
 import { TbDashboardFilled } from "react-icons/tb";
 import { THeaderProps } from "../types/header";
-import { TAchievement } from "../types/utils";
+import { TAchievement, TDashboardSidebar } from "../types/utils";
 import { MenuProps } from "antd";
 import { FiLogOut } from "react-icons/fi";
+import { FaBroom, FaPlus } from "react-icons/fa6";
+import { MdOutlineAddHomeWork, MdOutlineManageHistory } from "react-icons/md";
+import { RiLayoutHorizontalLine } from "react-icons/ri";
 
 // About header properties
 export const aboutData: THeaderProps = {
@@ -81,3 +84,70 @@ export const dropdownWithRole = (role: string): MenuProps["items"] => {
 };
 
 // admin dashboard sidebar
+
+export const dashboardItems: TDashboardSidebar[] = [
+  {
+    label: "Dashboard",
+    icon: <TbDashboardFilled />,
+    path: "",
+  },
+  {
+    icon: <MdOutlineManageHistory />,
+    label: "Room Management",
+    children: [
+      {
+        label: "Add New Room",
+        icon: <MdOutlineAddHomeWork />,
+        path: "add-room",
+      },
+      {
+        label: "All Rooms",
+        icon: <RiLayoutHorizontalLine />,
+        path: "all-rooms",
+      },
+    ],
+  },
+  {
+    icon: <FaBroom />,
+    label: "Slots Management",
+    children: [
+      {
+        label: "Create slots",
+        icon: <RiLayoutHorizontalLine />,
+        path: "create-slots",
+      },
+      {
+        label: "All slot",
+        icon: <RiLayoutHorizontalLine />,
+        path: "all-slot",
+      },
+    ],
+  },
+  {
+    icon: <FaPlus />,
+    label: "Booking Management",
+    children: [
+      {
+        label: "New Booking",
+        icon: <RiLayoutHorizontalLine />,
+        path: "new-booking",
+      },
+      {
+        label: "All Booking",
+        icon: <RiLayoutHorizontalLine />,
+        path: "all-booking",
+      },
+    ],
+  },
+  {
+    icon: <FaPlus />,
+    label: "User Management",
+    children: [
+      {
+        label: "All Users",
+        icon: <RiLayoutHorizontalLine />,
+        path: "all-users",
+      },
+    ],
+  },
+];

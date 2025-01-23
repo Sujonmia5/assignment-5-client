@@ -53,6 +53,12 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard/helo",
+        element: <div>dashboard</div>,
+      },
+    ],
   },
   {
     path: "*",

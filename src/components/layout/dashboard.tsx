@@ -2,6 +2,7 @@ import React from "react";
 
 import { Layout, theme } from "antd";
 import Sidebar from "../component/dashboard/sidebar";
+import { Outlet } from "react-router-dom";
 
 const { Header, Content, Footer } = Layout;
 
@@ -24,7 +25,7 @@ const DashboardLayout: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            Contect
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>

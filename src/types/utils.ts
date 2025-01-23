@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type TAchievement = {
   title: string;
   total: number;
@@ -13,4 +15,11 @@ export type TRoom = {
   roomImgUrl: string[];
   amenities: string[];
   isDeleted: boolean;
+};
+
+export type TDashboardSidebar = {
+  icon: ReactNode;
+  label: string;
+  children?: TDashboardSidebar[];
+  path?: string;
 };
