@@ -1,34 +1,37 @@
-const DashboardLayout = () => {
+import React from "react";
+
+import { Layout, theme } from "antd";
+import Sidebar from "../component/dashboard/sidebar";
+
+const { Header, Content, Footer } = Layout;
+
+const DashboardLayout: React.FC = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
   return (
-    <div>
-      <h1>Dashboard Layout</h1>
-      <p>Welcome to the dashboard layout!</p>
-      <button>Logout</button>
-      <button>Settings</button>
-      <button>Help</button>
-      <button>About</button>
-      <button>Contact</button>
-      <div>
-        <h2>Content</h2>
-        {/* Add your content here */}
-      </div>
-      <div>
-        <h2>Sidebar</h2>
-        {/* Add your sidebar here */}
-      </div>
-      <div>
-        <h2>Footer</h2>
-        {/* Add your footer here */}
-      </div>
-      <div>
-        <h2>Notifications</h2>
-        {/* Add your notifications here */}
-      </div>
-      <div>
-        <h2>Charts</h2>
-        {/* Add your charts here */}
-      </div>
-    </div>
+    <Layout hasSider>
+      <Sidebar />
+      <Layout>
+        <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+          <div
+            style={{
+              padding: 24,
+              textAlign: "center",
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            Contect
+          </div>
+        </Content>
+        <Footer style={{ textAlign: "center" }}>
+          Outspaces ©{new Date().getFullYear()} Created by Sujon
+        </Footer>
+      </Layout>
+    </Layout>
   );
 };
 

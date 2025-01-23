@@ -58,7 +58,7 @@ export const dropdownWithRole = (role: string): MenuProps["items"] => {
         {
           label: "Log out",
           key: "2",
-          icon: <FiLogOut className="" />,
+          icon: <FiLogOut />,
         },
       ];
 
@@ -79,3 +79,5 @@ export const dropdownWithRole = (role: string): MenuProps["items"] => {
       return;
   }
 };
+
+// admin dashboard sidebar

@@ -4,7 +4,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const OutSpaceAPI = createApi({
   reducerPath: "outSpaceApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://assignment-5-server-nine.vercel.app/",
+    baseUrl: "https://assignment-5-server-six.vercel.app",
+    headers: {
+      Accept: "application/json",
+    },
+    credentials: "include", // Send cookies with requests
   }),
   endpoints: () => ({}),
   tagTypes: ["roomsData"],

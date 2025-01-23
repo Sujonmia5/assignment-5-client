@@ -1,5 +1,4 @@
 import { achievementData } from "../../../utils/utilsData";
-import vediolayout from "../../../assets/image/diverse-female.jpg";
 import { Divider } from "antd";
 
 const Achievement = ({ margin }: { margin?: string }) => {
@@ -14,7 +13,7 @@ const Achievement = ({ margin }: { margin?: string }) => {
         <div className="w-full h-full rounded-2xl">
           <img
             className="w-11/12 h-[336px] object-cover object-center rounded-2xl"
-            src={vediolayout}
+            src="https://res.cloudinary.com/dwvt17wew/image/upload/v1737575605/diverse-female_cfn6do.jpg"
             alt=""
           />
         </div>

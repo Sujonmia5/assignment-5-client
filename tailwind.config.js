@@ -21,7 +21,8 @@ export default {
         danger: "#d60000",
       },
       backgroundImage: {
-        "header-bg": "url('./src/assets/image/background-1-1.png')",
+        "header-bg":
+          "url('https://res.cloudinary.com/dwvt17wew/image/upload/v1737575566/background-1-1_bkas2y.png')",
         "header-bg-alt": "url('/public/background-1-1.png')",
       },
     },

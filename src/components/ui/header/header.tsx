@@ -6,7 +6,7 @@ const Header = ({ data, hight }: { data?: THeaderProps; hight: number }) => {
       style={{
         height: `${hight}vh`,
       }}
-      className={`-mt-32 bg-cover bg-no-repeat bg-center rounded-bl-[120px] bg-header-bg !important `}
+      className={`-mt-32 bg-cover bg-no-repeat bg-center rounded-bl-[120px] bg-header-bg`}
     >
       <div className="flex justify-center items-center gap-x-5 py-80 px-20">
         <div className="text-center w-1/2 -mt-20">

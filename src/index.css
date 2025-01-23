@@ -26,6 +26,10 @@ body {
   color: white;
 }
 
+.bg-header-bg {
+  background-image: url("https://res.cloudinary.com/dwvt17wew/image/upload/v1737575566/background-1-1_bkas2y.png") !important;
+}
+
 .ant-dropdown {
   @apply h-auto mt-5 !important;
 }
