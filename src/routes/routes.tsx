@@ -10,6 +10,8 @@ import Login from "../pages/login";
 import Register from "../pages/register";
 import Contact from "../pages/contact";
 import SingleRoom from "../pages/singleRoom";
+import AddRoom from "../components/component/dashboard/addRoom";
+import AllRooms from "../components/component/dashboard/allRooms";
 
 export const router = createBrowserRouter([
   {
@@ -55,8 +57,16 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       {
-        path: "/dashboard/helo",
+        path: "/dashboard",
         element: <div>dashboard</div>,
+      },
+      {
+        path: "/dashboard/add-room",
+        element: <AddRoom />,
+      },
+      {
+        path: "/dashboard/all-rooms",
+        element: <AllRooms />,
       },
     ],
   },

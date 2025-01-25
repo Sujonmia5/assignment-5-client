@@ -4,7 +4,7 @@ import { Layout, theme } from "antd";
 import Sidebar from "../component/dashboard/sidebar";
 import { Outlet } from "react-router-dom";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const DashboardLayout: React.FC = () => {
   const {
@@ -15,7 +15,7 @@ const DashboardLayout: React.FC = () => {
     <Layout hasSider>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
+        {/* <Header style={{ padding: 0, background: colorBgContainer }} /> */}
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             style={{
